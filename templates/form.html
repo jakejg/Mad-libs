@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block form %}
+<form action="/story/{{num}}">
+    {% for word in grammar %}
+        <label for="{{word}}">{{word}}:</label>
+        <input id="{{word}}" type="text" name="{{word}}">
+        <br>
+    {% endfor %}
+<input type="submit">  
+</form>
+{% endblock %}
