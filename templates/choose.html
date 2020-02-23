@@ -2,11 +2,21 @@
 
 {% block choose %}
 
-<h2>Choose your template!</h2>
-    <ul>
-        <li><a href="/form/0">{{temp}}"</a></li>
-        <li><a href="/form/1">{{temp1}}"</a></li>
-        <li><a href="/form/2">{{temp2}}"</a></li>
-    </ul>
+<h2>Choose your theme!</h2>
+    <form action="/form">
+        <select name="story_id" id="">
+            {% for story in stories_list %}
+            <option value="{{story.theme}}">
+                {{story.theme}}
+        {% endfor %}
+        </select> 
+        <button>Yes</button>
+    </form>
+
+
+        <!-- <li><a href="/form/0">{{theme0}}</a></li>
+        <li><a href="/form/1">{{temp1}}</a></li>
+        <li><a href="/form/2">{{temp2}}</a></li>
+    </ul> -->
 
 {% endblock %}

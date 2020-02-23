@@ -12,17 +12,20 @@ def choose_story(num_string):
 
 @app.route('/')
 def home_choose_temp():
-    temp = stories.story0.template
-    temp1 = stories.story1.template
-    temp2 = stories.story2.template
 
-    return render_template("choose.html", temp = temp, temp1 = temp1, temp2 = temp2)
+    return render_template("choose.html", stories_list = stories.stories_list)
 
 
-@app.route('/form/<num>')
-def home_form(num):
-    s = choose_story(num).prompts
-    return render_template("form.html", grammar = s, num = num)
+@app.route('/form')
+def home_form():
+    selected_theme = request.args.get("story_id")
+    num = -1
+    for story in stories.stories_list:
+        num += 1
+        if story.theme == selected_theme:
+            return render_template("form.html", grammar = story.prompts, num = num)
+    return "Something went wrong"
+   
     
 
 @app.route('/story/<num>')
